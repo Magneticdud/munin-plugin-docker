@@ -4,6 +4,8 @@ The *docker_cpu* and *docker_memory* munin plugins monitor container CPU and mem
 
 I just edited the code slightly to let read the performance data from a munin docker container, because i don't want to pass the docker socket for security reasons. I might be wrong so feel free to comment on this.
 
+Run the bash script to generate the container list, then just mount it to root
+
 These plugins read the metrics exposed by control groups (cgroups) on a pseudo-filesystem. We can find the memory metrics for a Docker container under the */sys/fs/cgroup/memory/docker/container_id/* directory and the cpu metrics under the */sys/fs/cgroup/cpuacct/docker/container_id/* directory.
 
 ## **docker_memory plugin**

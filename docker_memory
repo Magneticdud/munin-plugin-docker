@@ -54,7 +54,15 @@ if ( defined $ARGV[0] and $ARGV[0] eq "autoconf" ) {
 
 $docker =~ s/\s+$//;
 
-my @containers = split "\n" , `$docker ps --no-trunc=true`;
+my $file_path = "/container-list.txt";
+my $content;
+open(my $fh, '<', $file_path) or die "Could not open the file '$file_path' $!";
+{
+   local $/;
+   $content = <$fh>;
+}
+my @containers = split("\n", $content);
+close($fh);
 my $result;
 
 for my $i (1 .. $#containers)
